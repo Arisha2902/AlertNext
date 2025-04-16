@@ -19,3 +19,7 @@
 
   
 
+  function showPrompt(event) {
+    event.preventDefault(); // Prevents the form from submitting normally
+    alert("Thank you for submitting your bin code. We will soon show you the disaster status.");
+  }
