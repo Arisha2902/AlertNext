@@ -17,4 +17,10 @@
     }
   });
 
+  new bootstrap.Collapse(document.getElementById('navbarTogglerDemo02')).toggle();
+
+  document.querySelector('.navbar-toggler').addEventListener('click', function () {
+    document.querySelector('#navbarTogglerDemo02').classList.toggle('show');
+  });
+
 
