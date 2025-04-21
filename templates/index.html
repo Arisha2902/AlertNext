@@ -13,26 +13,33 @@
     padding: 0;
     box-sizing: border-box;
 }
-
-
-  
   .navbar{
-   
     background: #171717;
-   
   }
   .nav-link{
     color: white !important;
-  
   }
   .navbar .nav-item .nav-link:active{
     color:#fe5f14 !important;
   }
   .nav-link.active {
     color:#fe5f14 !important;
-    /* color: #fc6016 !important; */
 }
-
+ .dropdown-menu {
+    background: #171717 !important;
+  }
+  .dropdown-item:hover{
+    background: #fe5f14 !important;
+    color:black !important;
+  }
+  .dropdown-item{
+    color: white !important;
+  }
+  .dropdown-item.active {
+    color:#fe5f14 !important;
+    background: #ebe3e3 !important;
+}
+  
   .carousel-item img {
     height: 500px; 
     object-fit: cover; 
@@ -83,21 +90,37 @@
   }
   #aidata{
     float: right;
-    width: 28%;
+    width: 70%;
     /* align-items: vertical; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 10px;
     background: #fe5f14;
-    border-radius: 12px;
+    /* border-radius: 12px; */
     color: white;
     font-weight: 600;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     
 }
+#aidata:hover{
+  background-color:#f46a29;
+  ;
+  color: white !important;
+  /* color: #fc6016 !important; */
+  box-shadow: 12px 12px 4px 3px rgb(187 73 73 / 30%)
+}
+  #aidata:hover h1{
+    color: #f8f9fa  !important;
+  }
+  #aidata label{
+    color: white !important;
+  } 
   #Do{
     float: left;
-    width: 70%;
+    width: 28%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -173,6 +196,10 @@
     padding: 10px;
 
   }
+   #be:hover , #af:hover, #dur:hover, #form:hover, #Do:hover{ 
+    box-shadow: 0px 5px 6px 7px rgb(181 115 115 / 25%); 
+    margin-bottom: 10px;
+  } 
   #dur{
     margin-top: 10px;
     clear: both;
@@ -214,19 +241,41 @@ image-rendering: pixelated;
   label{
     color: #fe5f14;
   }
-  .btn{
+  /* .btn{
     background: #fe5f14 !important;
     color: white !important;
-  }
-  @media (max-width: 1230px) {
-  #part1 {
-    width: 100%;
-  }
-  #part2 {
-    clear: both;
-    width: 100%;
-  }
-}
+  } */
+  button {
+            background-color:#f6f6f6e8 ;
+            color: #fe5f14;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px !important;
+        }
+        button:hover {
+            background-color: #e0d3cdfc;
+        }
+        #result {
+            margin-top: 20px;
+            display: none;
+        }
+        .prediction {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
 footer{
   background: #0c0c0c;
   padding-bottom: 30px;
@@ -238,8 +287,30 @@ footer{
   border-top: none;
 }
 .row{
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
+  /* margin-top: -10px; */
 }
+@media (max-width: 1230px) {
+  #part1 {
+    width: 100%;
+  }
+  #part2 {
+    clear: both;
+    width: 100%;
+  }
+}
+@media (width <= 1000px) {
+      #be ,#af{
+        width: 100%;
+        float: none;
+        margin-bottom: 10px;
+      }
+      #dur{
+        margin-top: 0px;
+
+      }
+}
+
 </style> 
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
@@ -251,9 +322,6 @@ footer{
   <nav class="navbar  sticky-top navbar-expand-lg" >
     
     <div class="container-fluid">
-      <!-- <a class="navbar-brand " href="#">
-        <img src="./static/ex.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top bg-white text-white">
-          <span class="text-white">Alertnexa</span> -->
       <a class="navbar-brand" href="#">
         <img src="./static/exx.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top bg-white">
         <span class="text-white">Alertnexa</span>
@@ -275,7 +343,7 @@ footer{
             <a class="nav-link " href="#form">Login</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#Drop" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#Drop" role="button" data-toggle="dropdown" aria-expanded="false">
               Survival
             </a>
             <ul class="dropdown-menu">
@@ -333,8 +401,15 @@ footer{
   <!-- data -->
   <div class="container" id="data">
     <div id="aidata">
-        <h3 >Ai Data</h3>
-        enter pincode to get data
+      <h1>Disaster Risk Prediction</h1>
+        <div class="form-group">
+            <label for="pincode">Enter Pincode:</label>
+            <input type="number" id="pincode" placeholder="Enter 6-digit pincode">
+        </div>
+        <button onclick="getPrediction()">Get Prediction</button>
+        <div id="result"></div>
+        <!-- <h3 >Ai Data</h3> -->
+        <!-- enter pincode to get data -->
     </div>
     <div  id="Do">
          <h2 id="or"> Some Important Emergency HelpLine Number</h2>
@@ -546,7 +621,7 @@ footer{
   <footer class="text-center text-white" >
     <hr id="fthr">
      
-        <div class="row text-center d-flex justify-content-center pt-5">
+        <div class="row text-center d-flex justify-content-center pt-4 pb-4">
          
           <div class="col-md-2">
             <h6 class="text-uppercase ">
@@ -582,7 +657,7 @@ footer{
       <!-- <hr> -->
 
       <!-- <section class="mb-5"> -->
-        <div class="row d-flex justify-content-center">
+        <div class=" d-flex justify-content-center pb-4 pt-4">
           <div class="col-lg-8">
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
@@ -609,7 +684,7 @@ footer{
 
 
 </body>
-<script src="./static/script.js"></script>  
+<!-- <script src="./static/script.js"></script>   -->
 
 
 
@@ -642,6 +717,63 @@ function validateForm(event) {
     return false; // Stop submission
   }
 
+  async function getPrediction() {
+            const pincode = document.getElementById('pincode').value;
+            if (!pincode || pincode.length !== 6) {
+                alert('Please enter a valid 6-digit pincode');
+                return;
+            }
+
+            try {
+                const response = await fetch('/predict_by_pincode', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ pincode: parseInt(pincode) })
+                });
+                const data = await response.json();
+                displayResult(data);
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('result').innerHTML = '<div class="error">Error fetching prediction. Please try again.</div>';
+            }
+        }
+
+        function displayResult(data) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+
+            if (data.error) {
+                resultDiv.innerHTML = `<div class="error">${data.error}</div>`;
+                return;
+            }
+
+            let html = `
+                <h2>Location: ${data.location}</h2>
+                <p>Coordinates: Latitude ${data.coordinates.latitude}, Longitude ${data.coordinates.longitude}</p>
+            `;
+
+            if (data.message) {
+                html += `<p>${data.message}</p>`;
+            } else if (data.predictions && data.predictions.length > 0) {
+                html += '<h3>Disaster Risk Predictions:</h3>';
+                data.predictions.forEach(pred => {
+                    html += `
+                        <div class="prediction">
+                            <p>Location (approx): (${pred.location.latitude}, ${pred.location.longitude})</p>
+                            <p>Flood Risk: ${pred.flood_risk}</p>
+                            <p>Cyclone Risk: ${pred.cyclone_risk}</p>
+                            <p>Earthquake Risk: ${pred.earthquake_risk}</p>
+                            <p>Combined Risk (Model): ${pred.combined_risk}</p>
+                        </div>
+                    `;
+                });
+            }
+
+            resultDiv.innerHTML = html;
+        }
+
   // confirm("Thank you for submitting your details. We will soon show you the disaster status.");
   let userConfirmed = confirm("Thank you for submitting your details. We will soon show you the disaster status.");
       
@@ -652,6 +784,7 @@ function validateForm(event) {
       }
   
 }
+
 
 </script>
 
