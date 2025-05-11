@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlertNexa</title>
+    <link rel="icon" type="image/png" href="./static/logo.png">
+    <!-- Bootstrap CSS (Replit Theme) -->
+    <link rel="stylesheet" href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+</head>
+<script src="/static/script.js" defer></script>
+<link rel="stylesheet" href="/static/style.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+
+<body data-bs-spy="scroll" data-bs-target="#navbarTogglerDemo02" data-bs-offset="100" style="font-family: 'Times New Roman', Times, serif;">
+   <!-- navbar -->
+  <nav class="navbar  sticky-top navbar-expand-lg" >
+    
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="./static/logo.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top">
+
+      </a>
+      <button class="navbar-toggler bg-white " type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-bold navbar-nav-scroll">
+          <li class="nav-item ">
+            <a class="nav-link " aria-current="page" href="#home">AlertNexa</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link " aria-current="page" href="#home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="#data">Data</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="#form">Login</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#Drop" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Survival
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#earthquake">EarthQuake</a></li>
+              <li><a class="dropdown-item" href="#flood">Flood</a></li>
+              <li><a class="dropdown-item" href="#flood">Cyclones</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about">About</a>
+          </li>
+        </ul>  
+      </div>
+    </div>
+  </nav>
+  
+    <!-- marquee -->
+  <div class="bg-primary bg-transparent">
+    <marquee class="blink"  >
+      Emergency helpline no.    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  During an Earthquake ,If you're indoors, stand against a wall near the center of the building, stand in a doorway, or crawl under heavy furniture (a desk or table). Stay away from windows and outside doors.   &nbsp; &nbsp; &nbsp; &nbsp;  If you're outdoors, stay in the open away from power lines or anything that might fall. Stay away from buildings (stuff might fall off the building or the building could fall on you).  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; uring a flood, prioritize safety by moving to higher ground, avoiding floodwaters, and turning off utilities if safe to do so. Evacuate if ordered and heed warnings from authorities. Do not walk, swim, or drive through floodwaters. 
+    </marquee>
+    
+    <div class="typing-container">
+      <h1 id="typing-text">Hello from AlertNexa – Predict. Prepare. Prevail.</h1>
+    </div>
+    
+    <p style="text-align:center;color:#fe5e14; font-size: 20;font-family: 'Times New Roman', Times, serif;">Empowering you with timely insights for disaster preparedness.</p>
+  </div>
+
+  <!-- carousel -->
+  <div class="carousel-box">
+    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1700">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="./static/flood.jpg" class="d-block w-100" alt="Slide 1">
+        </div>
+        <div class="carousel-item">
+          <img src="./static/earth.jpg" class="d-block w-100" alt="Slide 2">
+        </div>
+        <div class="carousel-item">
+          <img src="./static/earth2.jpg" class="d-block w-100" alt="Slide 3">
+        </div>
+        <div class="carousel-item">
+          <img src="./static/storm.jpg" class="d-block w-100" alt="...">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- data -->
+  <div class="container" id="data">
+    <div id="aidata">
+      <div class="container">
+        <h1>Disaster Risk Prediction</h1>
+        <div class="form-group" display="flex" style="margin: auto;">
+          <label for="pincode">Enter Pincode:</label>
+          <input type="number" id="prediction-pincode" placeholder="Enter 6-digit pincode">
+          <button onclick="getPrediction()" class="btn">Get Prediction</button>
+        </div>
+        <div id="result" style="overflow: auto; width: 500px; height: 200px;"></div>
+      </div>
+    </div>
+    <div id="Do">
+      <h2 id="or" style="text-align: center;">Some Important Emergency HelpLine Number</h2>
+      &nbsp;&nbsp;National Emergency Number: 112 <br>
+      &nbsp;&nbsp;Disaster Management Helpline: 108 <br>
+      &nbsp;&nbsp;National Response Force (NDRF): 011-23438252 ,9711077372<br>
+      &nbsp;&nbsp;National Disaster Management Authority (NDMA): 011-26701728<br>
+      &nbsp;&nbsp;Flood Helpline: 1078<br>
+      &nbsp;&nbsp;Central Water Commission (Flood Monitoring): 011-26100260<br>
+      &nbsp;&nbsp;IMD Cyclone Warning Centre (Chennai): 044-28271951<br>
+      &nbsp;&nbsp;Odisha Cyclone Helpline (OSDMA): 0674-2395398 / 2395531<br>
+      &nbsp;&nbsp;Andhra Pradesh Cyclone Relief: 1100, 0866-2410978<br>
+      &nbsp;&nbsp;IMD Seismology Division (Earthquake Info): 011-24619943<br>
+      &nbsp;&nbsp;Delhi Disaster Helpline: 1077<br>
+      &nbsp;&nbsp;Tamil Nadu Disaster Helpline: 1070, 9445869843<br>
+    </div>  
+  </div>
+
+  <div class="container mt-4">
+    <!-- Header and Input Section -->
+    <div id="ngo_input" class="d-flex flex-column mb-4 p-3 rounded">
+      <div id="ngo_title" class="flex-grow-1 mb-2">
+        <h2 class="text-center">SafeNest Locator</h2>
+      </div>
+      <div id="ngo_pin" class="w-100">
+        <div class="card">
+          <div class="card-body">
+            <div class="row align-items-end g-1">
+              <div class="col-md-8">
+                <div class="mb-0">
+                  <label for="pincode" class="form-label">Enter Indian PIN Code</label>
+                  <input type="text" class="form-control" id="ngo_pincode" placeholder="e.g., 110001" maxlength="6" pattern="\d{6}">
+                  <div id="error-message" class="text-danger mt-1"></div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <button id="search-btn" class="btn btn-primary w-100">Refuge Nearby</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="results-container" class="d-none">
+        <div class="col-md-6 mb-4">
+          <!-- Map -->
+          <div class="card w-100 h-100">
+            <div class="card-header">
+              <h5>NGO Map</h5>
+            </div>
+            <div class="card-body">
+              <div id="map"></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="col-md-6 mb-4">
+          <!-- NGO List -->
+          <div class="card w-100 h-100">
+            <div class="card-header">
+              <h5>NGO List</h5>
+            </div>
+            <div class="card-body">
+              <div id="ngo-list" style="overflow: auto;"></div>
+              <div id="no-results" class="d-none alert alert-info">
+                No NGOs found for this PIN code. Try another one.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- form -->
+  <div class="container" id="form">
+    <div id="part1">
+      <form method="post" action="/register" id="registrationForm">
+        <h2>Check Disaster Risk In Your Area</h2>
+        <label for="Name" class="col-sm-2 col-form-label">Name</label>
+        <input id="Name"  name="name"  placeholder="Enter Your Name">
+        <br><br>
+        <label for="Email" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="Email" name="email" aria-describedby="emailHelp" placeholder="name@example.com">
+        <div id="emailHelp"  class="form-text">We'll never share your email with anyone else.</div>
+        <br><br>
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" name="phone" placeholder="+91" maxlength="13" required>
+        <br><br>
+        <label for="pincode" class="form-label">Pincode</label>
+        <input type="text" class="form-control" id="pincode" name="pincode" placeholder="Enter your area pincode" maxlength="6" pattern="[0-9]{6}" required>
+        <div class="form-text"> Enter a 6-digit postal code.</div>
+        <br><br>
+        <button type="submit" class="btn">Submit</button>
+      </form>
+    </div>
+    <div id="part2">
+      <img id="img" src="./static/f2.jpg" alt="">
+    </div>
+  </div>
+  
+  <!-- dropdown -->
+  <div class="container" id="Dropdown">
+    <div class="container"  id="earthquake">  
+      <h2>
+        What Should I Do Before, During, and After an <b>Earthquake </b> ?
+        <hr>
+      </h2>
+      <div id="be">  
+        <h3 id="or">
+          What to Do before an Earthquake ?
+        </h3>
+        <ul style="font-family: 'Times New Roman', Times, serif;">
+          <li>Learn first aid. </li>
+          <li>Learn how to turn off the gas, water, and electricity. </li>
+          <li>Make up a plan of where to meet your family after an earthquake. </li>
+          <li>Don't leave heavy objects on shelves (they'll fall during a quake).</li>
+          <li>Learn the earthquake plan at your school or workplace.</li>
+        </ul>
+      </div> 
+      <div id="af"> 
+        <h3 id="or">
+          What to Do After an Earthquake ?
+        </h3> 
+        <ul style="font-family: 'Times New Roman', Times, serif;">
+          <li>Stay away from damaged areas.</li>
+          <li>Turn on the radio. Don't use the phone unless it's an emergency.</li>
+          <li>Be careful of chimneys (they may fall on you).</li>
+          <li>Be prepared for aftershocks – Aftershocks can be as strong as the original quake.</li>
+          <li>Check yourself and others for injuries. Provide first aid for anyone who needs it. </li>
+        </ul>
+      </div>    
+      <div id="dur">  
+        <h3>
+          What to Do During an Earthquake ?
+        </h3>
+        <ul style="font-family: 'Times New Roman', Times, serif;">
+          <li><b>Stay calm!</b>  If you're indoors, stay inside. If you're outside, stay outside. </li>   
+          <li>Don't use matches, candles, or any flame. Broken gas lines and fire don't mix.</li>  
+          <li>Don't use elevators (they may shut down).</li>
+          <li>If you're in a car, stop the car and stay inside the car until the earthquake stops. </li>
+          <li>If you're indoors, stand against a wall near the center of the building, stand in a doorway, or crawl under heavy furniture (a desk or table). </li>
+          <li>If you're outdoors, stay in the open away from power lines or anything that might fall. Stay away from buildings.</li>
+        </ul>
+      </div> 
+    </div>
+    <div class="container" id="flood">    
+      <h2>
+        What Should I Do Before, During, and After a <b>Flood </b> ?
+        <hr>
+      </h2>
+      <div id="be">
+        <h3 id="or">
+          What to Do before a Flood ?
+        </h3>
+        <ul style="font-family: 'Times New Roman', Times, serif;">
+          <li>Prepare your home for flooding.</li>
+          <li>Build an emergency kit and make a family communications plan.</li>
+          <li>Avoid building in a floodplain unless you elevate and reinforce your home.</li>
+          <li>Consider installing "check valves" to prevent flood water from backing up into your home.</li>
+          <li>Protect your home by building smart and taking actions to minimize flood damage.</li>
+        </ul>
+      </div>
+      <div id="af">
+        <h3 id="or">
+          What to Do After a Flood?
+        </h3>
+        <ul style="font-family: 'Times New Roman', Times, serif;">
+          <li>Avoid moving water.</li>
+          <li>Return home only when authorities indicate it is safe.</li>
+          <li>Stay out of any building if it is surrounded by floodwaters.</li>
+          <li>Listen to news reports to learn whether the water supply is safe to drink.</li>
+          <li>Clean and disinfect everything that got wet. Mud left from floodwaters can contain sewage and chemicals.</li>
+        </ul>
+      </div>
+      <div id="dur">
+        <h3>
+          What to Do During a Flood ?
+        </h3>
+        <ul style="font-family: 'Times New Roman', Times, serif;">
+          <li>Listen to the radio or television for information.</li>
+          <li>Follow instructions given by public safety officials.</li>
+          <li>Consider postponing outdoor activities.</li>
+          <li>Secure your home. If you have time, bring in outdoor furniture. Move essential items to an upper floor.</li>
+          <li>Flooding may have caused familiar places to change. Floodwaters often erode roads and walkways. Flood debris may hide animals and broken bottles, and it's also slippery. Avoid walking or driving through it.</li>
+        </ul>
+      </div>
+    </div>
+   
+    <div class="container" id="cyclones">
+      <h2>
+        What Should I Do Before, During, and After a <b>Cyclone</b> ?
+        <hr>
+      </h2> 
+      <div id="be">
+        <h3 id="or">
+          What to Do before Cyclone ?
+        </h3>
+        <ul style="font-family: 'Times New Roman', Times, serif;">
+          <li>Check the house; secure loose tiles and carry out repairs of doors and windows</li>
+          <li>Keep some wooden boards ready so that glass windows can be boarded if needed</li>
+          <li>Demolish condemned buildings</li>
+          <li>Keep some extra batteries for transistors</li>
+          <li>Keep some dry non-perishable food always ready for use in emergency</li>
+        </ul>
+      </div>
+      <div id="af">
+        <h3 id="or">
+          What to Do After a Cyclone ?
+        </h3>
+        <ul style="font-family: 'Times New Roman', Times, serif;">
+          <li>Stay away from sewage lines, gutters and drains</li>
+          <li>Cover drains holes to prevent backflow of sewage. </li>
+          <li>Boil water before drinking or cooking. </li>
+          <li>Do not use tap water for drinking or cooking as the sewage lines may be contaminated.</li>
+        </ul>
+      </div>
+      <div id="dur">
+        <h3>
+          What to Do During a Cyclone ?
+        </h3>
+        <ul style="font-family: 'Times New Roman', Times, serif;">
+          <li>Keep all the doors and windows closed.</li>
+          <li>Install storm shutters or board up glass windows.</li>
+          <li>Do not drive immediately after a storm because the roads are left slippery due to heavy downpours.</li>
+          <li>If you are asked to evacuate, do not hesitate. Move to a house built on high grounds.</li>
+          <li>Park your vehicles beneath a solid shelter with a hand brake or in gear to guard them.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- about us -->
+  <div class="container" id="about">
+    <section class="about-banner">
+        <h2>Disaster Risk Prediction System using Machine Learning & Historical Data</h2>
+        <div class="features-container">
+            <div class="feature-item" title="Flood Risk Estimation">
+                <div class="feature-circle">
+                    <img src="static/map.jpg" alt="Flood Risk" />
+                </div>
+                <div class="feature-text">Flood, Earthquake, and Cyclone risk estimation based on geographic coordinates or pincodes.</div>
+            </div>
+            <div class="feature-item" title="NGO Information Retrieval">
+                <div class="feature-circle">
+                    <img src="static/ngo.jpg" alt="NGO Information" />
+                </div>
+                <div class="feature-text">Provides NGO information retrieval to support disaster management efforts.</div>
+            </div>
+            <div class="feature-item" title="User Registration">
+                <div class="feature-circle">
+                    <img src="static/login.jpg" alt="User Registration" />
+                </div>
+                <div class="feature-text">User registration and related services for disaster management support.</div>
+            </div>
+            <div class="feature-item" title="Machine Learning & Historical Data">
+                <div class="feature-circle">
+                    <img src="static/ai_sorting.jpg" alt="Machine Learning" />
+                </div>
+                <div class="feature-text">Uses machine learning models and historical data to estimate disaster risks.</div>
+            </div>
+        </div>
+    </section>
+  </div>
+  
+  <!-- footer -->
+  <footer class="text-center text-black">
+    <hr id="fthr">
+    <div class="row text-center d-flex justify-content-center pt-5">
+      <div class="col-md-2">
+        <h6 class="text-uppercase">
+          <a href="#home" class="text-black text-decoration-none">Home</a>
+        </h6>
+      </div>
+      <div class="col-md-2">
+        <h6 class="text-uppercase font-weight-bold">
+          <a href="#data" class="text-black text-decoration-none">Data</a>
+        </h6>
+      </div>
+      <div class="col-md-2">
+        <h6 class="text-uppercase">
+          <a href="#form" class="text-black text-decoration-none">Login</a>
+        </h6>
+      </div>
+      <div class="col-md-2">
+        <h6 class="text-uppercase">
+          <a href="#Dropdown" class="text-black text-decoration-none">Survival</a>
+        </h6>
+      </div>
+      <div class="col-md-2">
+        <h6 class="text-uppercase">
+          <a href="#about" class="text-black text-decoration-none">About US </a>
+        </h6>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <div class="col-lg-8 text-black">
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
+          distinctio earum repellat quaerat voluptatibus placeat nam,
+          commodi optio pariatur est quia magnam eum harum corrupti
+          dicta, aliquam sequi voluptate quas.
+        </p>
+      </div>
+    </div>
+  </footer> 
+
+</body>
+<script src="/static/script.js" defer></script>  
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+
+<!-- Bootstrap Bundle with Popper (Required for carousel controls) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+document.getElementById('registrationForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(this);
+    
+    try {
+        const response = await fetch('/register', {
+            method: 'POST',
+            body: formData
+        });
+        
+        const result = await response.json();
+        
+        if (response.ok) {
+            alert('Registration successful!');
+            this.reset();
+        } else {
+            alert('Error: ' + result.detail);
+        }
+    } catch (error) {
+        alert('An error occurred. Please try again.');
+        console.error('Error:', error);
+    }
+});
+</script>
+
+</html>
